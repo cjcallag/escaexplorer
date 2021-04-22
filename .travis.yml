@@ -8,6 +8,7 @@ cache:
   packages: true
   directories:
     - "travis_phantomjs"
+before_install: R -e 'source("https://install-github.me/r-lib/remotes")'
 before_install:
   - "export PHANTOMJS_VERSION=2.1.1"
   - "phantomjs --version"
@@ -22,8 +23,6 @@ before_install:
 
 r:
  - release
- - devel
- - oldrel
 
 r_github_packages:
   - rstudio/webdriver

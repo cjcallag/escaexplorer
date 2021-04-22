@@ -32,7 +32,7 @@ remotes::install_github("cjcallag/escaexplorer")
 Launching can be done programmatically like so:
 
 ``` r
-escaexplorer::launch_app(app = "explorere",
+escaexplorer::launch_app(app = "explorer",
                          use_browser = TRUE)
 ```
 

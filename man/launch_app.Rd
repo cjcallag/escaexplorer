@@ -4,12 +4,24 @@
 \alias{launch_app}
 \title{Launch Application}
 \usage{
-launch_app(app = "explorer", use_browser = TRUE)
+launch_app(
+  app = "explorer",
+  use_browser = TRUE,
+  host = "0.0.0.0",
+  port = 3838,
+  quiet = FALSE
+)
 }
 \arguments{
-\item{app}{Name of the application.}
+\item{app}{Character, name of the application.}
 
-\item{use_browser}{Logical.}
+\item{use_browser}{Logical, if TRUE the system's default web browser will be launched automatically after the app is started.}
+
+\item{host}{Character, the IPv4 address that the application should listen on.}
+
+\item{port}{Numeric, the TCP port that the application should listen on.}
+
+\item{quiet}{Logical, if TRUE Shiny status messages will be shown. Defaults to FALSE.}
 }
 \description{
 Launch Application
