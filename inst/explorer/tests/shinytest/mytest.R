@@ -1,0 +1,10 @@
+app <- ShinyDriver$new("../../", seed = 123)
+app$snapshotInit("mytest")
+
+app$setInputs(data_set = "Ownership")
+app$setInputs(data_set = "Municipal Jurisdictions")
+app$snapshot()
+app$setInputs(data_set = "Ownership")
+app$snapshot()
+app$setInputs(data_set = "MRA Groups")
+app$snapshot()

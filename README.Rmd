@@ -1,0 +1,49 @@
+---
+title: "`{escaexplorer}`"
+output: 
+  github_document:
+    html_preview: true
+    toc: true
+    toc_depth: 2
+  editor_options:
+    chunk_output_type: console
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(
+  echo = TRUE,
+  fig.path = "man/figures/README-",
+  out.width = "100%")
+```
+
+<!-- badges: start -->
+[![Travis build status](https://travis-ci.com/cjcallag/escaexplorer.svg?branch=main)](https://travis-ci.com/cjcallag/escaexplorer)
+[![Depends](https://img.shields.io/badge/Depends-GNU_R>=3.5-blue.svg)](https://www.r-project.org/)
+[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://www.mit.edu/~amini/LICENSE.md)
+<!-- badges: end -->
+
+**{escaexplorer}** is a repository for the ESCA Explorer application developed for the City of Seaside Environmental Services Cooperative Agreement.
+
+## Installation
+
+The R installation can be accomplished using **{remotes}**:
+
+```{r, eval = FALSE}
+if(!requireNamespace("remotes")) install.packages("remotes")
+
+remotes::install_github("cjcallag/escaexplorer")
+```
+
+## Launching App
+
+Launching can be done programmatically like so:
+
+```{r, eval = FALSE}
+escaexplorer::launch_app(app = "explorere",
+                         use_browser = TRUE)
+```
+
+```{r, echo = FALSE}
+knitr::include_graphics(path = "man/figures/app.png")
+```
+
