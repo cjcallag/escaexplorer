@@ -18,7 +18,7 @@ modal_about <- function() {
           tags$li(tags$b("Land Use Controls (LUCS):"),"Recorded from the Land Use Controls Implementation Plan for each MRA, these can be found in the Administrative Record,", tags$a(id = "link", href = "https://www.fortordcleanup.com/documents/administrative-record/", "here.")),
         ),
         tags$hr(),
-        p("All code used for this app is available on", tags$a(id = "link", href = "https://github.com/cjcallag/esca", "Github."), "For questions please email Chris Callaghan at ccallaghan@ci.seaside.ca.us.")
+        p("All code used for this app is available on", tags$a(id = "link", href = "https://github.com/cjcallag/escaexplorer", "Github."), "For questions please email Chris Callaghan at ccallaghan@ci.seaside.ca.us.")
       )
     )
   )
