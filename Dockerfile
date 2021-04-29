@@ -36,6 +36,10 @@ RUN R -e "install.packages('remotes', repos = 'http://cran.us.r-project.org')" -
 ## Expose port
 EXPOSE 3838
 
+# Set non-root
+RUN useradd shiny_user
+USER shiny_user
+
 # Run app on container start
 CMD ["R", "-e", "escaexplorer::launch_app(app = 'explorer', use_browser = TRUE)"]
 
@@ -43,3 +47,4 @@ CMD ["R", "-e", "escaexplorer::launch_app(app = 'explorer', use_browser = TRUE)"
 ## cd inst/
 ## docker build -t my-shinyapp-image .
 ## docker run -d --rm -p 3838:3838 my-shinyapp-image
+
