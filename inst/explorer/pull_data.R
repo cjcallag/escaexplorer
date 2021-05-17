@@ -44,7 +44,7 @@ wanted <- tibble::tribble(
   "031011043000", "Group 1", "MPC", "County of Monterey", "Parker Flats",
   "031152005000", "Group 1", "CalVet", "County of Monterey", "Parker Flats",
   "031152002000", "Group 1", "CalVet", "City of Seaside", "Parker Flats",
-  "031152008000", "Group 1", "City of Seaside", "City of Seaside", "Parker Flats", 
+  "031152008000", "Group 1", "City of Seaside", "City of Seaside", "Parker Flats",
   "031011065000", "Group 1", "County of Monterey", "County of Monterey", "Parker Flats",
   "031152010000", "Group 1", "City of Seaside", "City of Seaside", "Parker Flats",
   "031071008000", "Group 1", "County of Monterey", "County of Monterey", "Parker Flats",
@@ -75,9 +75,9 @@ apn <- tryCatch(
     message("Nothing worked... :(")
   }
 )
-# Restricted Areas =============================================================
+# # Restricted Areas =============================================================
 restricted_areas <- tryCatch(
-  {sf::st_read("https://maps.fodis.net/server/rest/services/OpenData/AdministrativeBoundaries/FeatureServer/1/query?where=parcel_id='F1.13'%20OR%20parcel_id='E8a.1.1.1'&outFields=*&outSR=4326&f=json")
+  {sf::st_read("https://maps.fodis.net/server/rest/services/OpenData/AdministrativeBoundaries/FeatureServer/1/query?where=parcel_id%20in%20(%27F1.13%27,%27F1.13.1%27,%27F1.7.4%27)&outFields=*&outSR=4326&f=json")
   },
   error = function(cond) {
     message(cond)
@@ -159,7 +159,7 @@ esca <- tryCatch(
   sf::st_as_sf(merge(x = wanted, y = temp,
                      by.y = "coenumber",
                      by.x = "coe"))
-  
+
   },
   error = function(cond) {
     message(cond)
@@ -173,3 +173,4 @@ esca <- tryCatch(
     message("Nothing worked... :(")
   }
 )
+

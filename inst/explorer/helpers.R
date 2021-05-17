@@ -36,7 +36,7 @@ get_extended_apn_ownership <- function(.df, .apn) {
 }
 get_logo_image <- function(x) {
   sapply(x, function(y) {
-    res <- switch(y, 
+    res <- switch(y,
                   `County of Monterey` = "moco_logo.png",
                   `City of Monterey` = "monterey_logo.png",
                   `City of Del Rey Oaks` = "dro_logo.png",
@@ -46,7 +46,7 @@ get_logo_image <- function(x) {
 }
 get_ordinance_row <- function(x) {
   sapply(x, function(y) {
-    res <- switch(y, 
+    res <- switch(y,
                   `County of Monterey` = "https://library.municode.com/ca/monterey_county/codes/code_of_ordinances?nodeId=TIT16EN_CH16.10DIEXFOFOOR",
                   `City of Monterey` = "https://monterey.municipal.codes/Code/9-73",
                   `City of Del Rey Oaks` = "https://library.municode.com/ca/del_rey_oaks/codes/code_of_ordinances?nodeId=TIT15BUCO_CH15.48DIEXFOFOOR_15.48.060PEPR",
@@ -57,7 +57,7 @@ get_ordinance_row <- function(x) {
 }
 get_metal_row <- function(x) {
   sapply(x, function(y) {
-    res <- switch(y, 
+    res <- switch(y,
                   `County of Monterey` = NULL,
                   `City of Monterey` = NULL,
                   `City of Del Rey Oaks` = NULL,
