@@ -19,7 +19,8 @@ shinyUI(
                               selectInput(inputId = "data_set",
                                           label = tags$b("View data by:"),
                                           choices = c("MRA Groups",
-                                                      "Ownership",
+                                                      # 1-June BRAC comment ----
+                                                      # "Ownership",
                                                       "Municipal Jurisdictions" #,
                                                       #"Proposed Reuse"
                                                       ))),

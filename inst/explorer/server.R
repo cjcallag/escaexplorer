@@ -18,13 +18,15 @@ shinyServer(function(input, output) {a
   # Get map ====================================================================
   output$map <- renderLeaflet({
     ## Validate data -----------------------------------------------------------
-    if (is.na(esca) || is.na(apn) || is.na(ft_ord) || is.na(restricted_areas)) {
+    if (is.na(esca) || is.na(ft_ord) || is.na(restricted_areas)
+        # || is.na(apn)
+        ) {
       showNotification(ui = "One of the required datasets are failing to load, refresh your browser. If this persists, contact the adminstrator (ccallaghan@ci.seaside.ca.us).",
                        type = "error",
                        duration = NULL)
       }
     validate(need(!is.na(esca), message = FALSE))
-    validate(need(!is.na(apn), message = FALSE))
+    # validate(need(!is.na(apn), message = FALSE))
     validate(need(!is.na(ft_ord), message = FALSE))
     validate(need(!is.na(restricted_areas), message = FALSE))
     source("process_data.R")
@@ -33,8 +35,8 @@ shinyServer(function(input, output) {a
                           domain = esca[["group"]], na.color = "#ff7f00")
     reuse_pal <- colorFactor(palette = c("#7fc97f", "#beaed4", "#fdc086", "#ffff99"),
                              domain = esca[["hmp_category"]], na.color = "#ff7f00")
-    owner_pal <- colorFactor(palette = c("#7fc97f", "#beaed4", "#fdc086", "#ffff99", "#386cb0", "#f0027f", "#bf5b17", "#666666"),
-                             domain = apn[["Owner"]], na.color = "#ff7f00")
+    # owner_pal <- colorFactor(palette = c("#7fc97f", "#beaed4", "#fdc086", "#ffff99", "#386cb0", "#f0027f", "#bf5b17", "#666666"),
+    #                          domain = apn[["Owner"]], na.color = "#ff7f00")
     juris_pal <- colorFactor(palette = c("#7fc97f", "#beaed4", "#fdc086", "#ffff99"),
                              domain = esca[["jurisdiction"]], na.color = "#ff7f00")
     ## Map making --------------------------------------------------------------
@@ -77,23 +79,24 @@ shinyServer(function(input, output) {a
                                                           textPlaceholder = "Search COE...",
                                                           autoCollapse = TRUE))
     }
-    else if (input$data_set == "Ownership") {
-      my_map %>%
-        addPolygons(data = apn, fillColor = ~owner_pal(apn[["Owner"]]),
-                    fillOpacity = 0.5, weight = 1, opacity = 1, color = "#000000",
-                    label = paste0("APN: ", apn[["APN"]]),
-                    popup = ~owner_popup, group = "Owner") %>%
-        addLegend(position = "bottomright", pal = owner_pal, values = apn[["Owner"]],
-                  title = "Land Owners", opacity  = 1) %>%
-        addSearchFeatures(targetGroups = "Owner",
-                          options = searchFeaturesOptions(zoom = 15,
-                                                          openPopup = TRUE,
-                                                          moveToLocation = TRUE,
-                                                          position = "topleft",
-                                                          hideMarkerOnCollapse = TRUE,
-                                                          textPlaceholder = "Search APN...",
-                                                          autoCollapse = TRUE))
-    }
+    ### Commented out at the request of BRAC on 1-June -------------------------
+    # else if (input$data_set == "Ownership") {
+    #   my_map %>%
+    #     addPolygons(data = apn, fillColor = ~owner_pal(apn[["Owner"]]),
+    #                 fillOpacity = 0.5, weight = 1, opacity = 1, color = "#000000",
+    #                 label = paste0("APN: ", apn[["APN"]]),
+    #                 popup = ~owner_popup, group = "Owner") %>%
+    #     addLegend(position = "bottomright", pal = owner_pal, values = apn[["Owner"]],
+    #               title = "Land Owners", opacity  = 1) %>%
+    #     addSearchFeatures(targetGroups = "Owner",
+    #                       options = searchFeaturesOptions(zoom = 15,
+    #                                                       openPopup = TRUE,
+    #                                                       moveToLocation = TRUE,
+    #                                                       position = "topleft",
+    #                                                       hideMarkerOnCollapse = TRUE,
+    #                                                       textPlaceholder = "Search APN...",
+    #                                                       autoCollapse = TRUE))
+    # }
     else if (input$data_set == "Municipal Jurisdictions") {
       my_map %>%
         addPolygons(data = esca, fillColor = ~juris_pal(esca[["jurisdiction"]]),

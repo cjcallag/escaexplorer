@@ -56,26 +56,27 @@ wanted <- tibble::tribble(
   "031011067000", "Group 1", "County of Monterey", "County of Monterey", "Parker Flats",
   "031011068000", "Group 1", "County of Monterey", "County of Monterey", "Parker Flats",
   "031152011000", "Group 1","City of Seaside", "City of Seaside", "Parker Flats")
-apn <- tryCatch(
-  {
-    temp <- sf::st_read(paste0("https://services2.arcgis.com/nOGTdfb4kF4dZljH/arcgis/rest/services/Parcels_Data/FeatureServer/0/query?",
-                               "where=", in_repeater(.field = "APN", .values = wanted[["APN"]]),
-                               "&outFields=APN&outSR=4326&f=json"))
-    sf::st_as_sf(merge(x = wanted, y = temp, by = "APN"))
-  },
-  error = function(cond) {
-    message(cond)
-    return(NA)
-  },
-  warning = function(cond) {
-    message(cond)
-    return(NA)
-  },
-  finally = function(cond) {
-    message("Nothing worked... :(")
-  }
-)
-# # Restricted Areas =============================================================
+## Commented out at the request of BRAC on 1-June ------------------------------
+# apn <- tryCatch(
+#   {
+#     temp <- sf::st_read(paste0("https://services2.arcgis.com/nOGTdfb4kF4dZljH/arcgis/rest/services/Parcels_Data/FeatureServer/0/query?",
+#                                "where=", in_repeater(.field = "APN", .values = wanted[["APN"]]),
+#                                "&outFields=APN&outSR=4326&f=json"))
+#     sf::st_as_sf(merge(x = wanted, y = temp, by = "APN"))
+#   },
+#   error = function(cond) {
+#     message(cond)
+#     return(NA)
+#   },
+#   warning = function(cond) {
+#     message(cond)
+#     return(NA)
+#   },
+#   finally = function(cond) {
+#     message("Nothing worked... :(")
+#   }
+# )
+## Restricted Areas =============================================================
 restricted_areas <- tryCatch(
   {sf::st_read("https://maps.fodis.net/server/rest/services/OpenData/AdministrativeBoundaries/FeatureServer/1/query?where=parcel_id%20in%20(%27F1.13%27,%27F1.13.1%27,%27F1.7.4%27)&outFields=*&outSR=4326&f=json")
   },
